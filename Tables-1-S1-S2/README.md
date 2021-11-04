@@ -1,4 +1,4 @@
-Requirement: python
+Python requirements: `scipy`, `numpy`
 
 Command: `python test_ci.py > out`
 

@@ -1,6 +1,7 @@
 ## Requirements
 
 Python requirements: `screed`, `mmh3`, `scipy`, `numpy`
+
 System requirements: `mash` needs to be installed
 
 ### Result generation

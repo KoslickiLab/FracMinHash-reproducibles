@@ -8,7 +8,7 @@ stats_filename = 'stats'
 reference_genome = 'staphylococcus.fasta'
 mutated_filename_prefix = 'staphylococcus_mutated_'
 k = 21
-scale_factor = 0.01
+scale_factor = 0.1
 num_runs = 10
 
 for mutation_rate in mut_rates:

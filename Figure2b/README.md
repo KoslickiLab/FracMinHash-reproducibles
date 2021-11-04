@@ -29,5 +29,6 @@ Output will be stored in file `results`
 ```
 cd plotting
 cp ../result-generation/results results
-python 
+manually delete the file names in the results file
+python plotter-pairwise-genomes-expt.py
 ```

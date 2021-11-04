@@ -1,0 +1,15 @@
+##########################################################################################
+OAU v1.2
+##########################################################################################
+
+Calculating ANI for pair number: 1
+
+# Pair number mappings
+pair#	aligned_files
+1	data/taxid_148814_8_genomic.fna | data/taxid_123841_0_genomic.fna
+
+
+
+# OrthoANIu results as list
+pair#	orthoANI_value	avg_aligned_length	query_coverage	subject_coverage	query_length	subject_length
+1	65.14	11084	0.00710239651416122	0.006912637828668363	1560600	1603440

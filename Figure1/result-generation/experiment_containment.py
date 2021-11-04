@@ -170,7 +170,7 @@ def compare_two_files_to_get_multiple_containments(filename_1, filename_2, k, sc
     return size_1, size_2, size_union, size_intersection, true_containment, scaled_containments, sketch_sizes
     
 
-g_filename = 'ecoli.fasta'
+g_filename = 'staphylococcus.fasta'
 smallg_filename = 'temp.fasta'
 smg_filename = 'supermg.fasta'
 mg_filename = 'SRR492190.contigs.fa'

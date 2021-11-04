@@ -40,7 +40,3 @@ def mutate_file(filename, output_filename, mutation_rate, seed):
         sequences.append(mutated_sequence)
     write_fasta(output_filename, names, sequences)
     
-mut_rates = [0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99]
-seed = 1
-for mutation_rate in mut_rates:
-    mutate_file('ecoli.fasta', 'ecoli_mutated_'+str(int(mutation_rate*100))+'.fasta', mutation_rate, seed)

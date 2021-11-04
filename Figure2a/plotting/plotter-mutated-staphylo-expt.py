@@ -9,6 +9,8 @@ figure(figsize=(5,5), dpi=80)
 plt.style.use('seaborn-bright')
 
 df = pd.read_csv('stats', delimiter=' ', header=None)
+if len(df.columns) < 10:
+    df = pd.read_csv('stats', delimiter='\t', header=None)
 df.columns=['mut_rate', 'true_c', 'mash_c', 'mash_c_var', 'scaled_c', 'scaled_c_var', 'mash_dist', 'p_est', 'p_low', 'p_high']
 
 n = len(df['true_c'].tolist())
@@ -22,7 +24,7 @@ plt.grid(alpha=0.2)
 plt.legend()
 plt.xlabel("True containment index")
 plt.ylabel("Predicted containment index")
-plt.savefig('compare-containemnt-simulated.pdf')
+#plt.savefig('compare-containemnt-simulated.pdf')
 plt.close()
 
 

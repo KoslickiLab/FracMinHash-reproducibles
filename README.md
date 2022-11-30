@@ -1,4 +1,4 @@
-# ScaledMinHash-reproducibles
+# FracMinHash-reproducibles
 
 To reproduce the analyses included in FracMinHash paper, use this repository. Follow instructions in the readme files. Note that 
 

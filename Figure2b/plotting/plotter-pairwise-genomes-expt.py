@@ -32,19 +32,19 @@ plt.close()
 figure(figsize=(5, 5), dpi=80)
 plt.style.use('seaborn-bright')
 
-plt.scatter( df['mut_rate'].tolist(), df['mash_dist'].tolist(), marker='o', s=s, alpha=0.8, label="Mash Distance")
-plt.scatter( df['mut_rate'].tolist(), df['p_est'].tolist(), marker='o', s=s, alpha=0.8, label="Theorem 9 Distance", color='red')
 plt.plot( df['mut_rate'].tolist(), df['mut_rate'].tolist(), alpha=0.8, linestyle='-', linewidth=1, color='grey' )
+plt.scatter( df['mut_rate'].tolist(), df['mash_dist'].tolist(), marker='o', s=s, alpha=0.6, label="Mash Distance", color='red')
+plt.scatter( df['mut_rate'].tolist(), df['p_est'].tolist(), marker='o', s=s, alpha=0.6, label="FracMinHash Distance", color='blue')
 
 delta_x = 0.003
 linewidth = 0.9
-opacity=0.5
+opacity=0.6
 for (p, ci_high, ci_low) in list( zip( df['mut_rate'].tolist(), df['p_low'].tolist(), df['p_high'].tolist() ) ):
-    plt.plot( [p, p], [ci_low, ci_high], color='red', linewidth=linewidth, alpha=opacity)
-    plt.plot( [p-delta_x, p+delta_x], [ci_low, ci_low], color='red', linewidth=linewidth, alpha=opacity)
-    plt.plot( [p-delta_x, p+delta_x], [ci_high, ci_high], color='red', linewidth=linewidth, alpha=opacity)
-    
-    
+    plt.plot( [p, p], [ci_low, ci_high], color='blue', linewidth=linewidth, alpha=opacity)
+    plt.plot( [p-delta_x, p+delta_x], [ci_low, ci_low], color='blue', linewidth=linewidth, alpha=opacity)
+    plt.plot( [p-delta_x, p+delta_x], [ci_high, ci_high], color='blue', linewidth=linewidth, alpha=opacity)
+
+
 
 plt.grid(alpha=0.2)
 plt.legend()

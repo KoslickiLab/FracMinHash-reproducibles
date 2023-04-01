@@ -2,6 +2,7 @@ import sys
 import screed
 import mmh3
 import argparse
+from tqdm import tqdm
 
 __complementTranslation = {"A": "T", "C": "G", "G": "C", "T": "A", "N": "N", "R": "N"}
 
@@ -14,25 +15,25 @@ class ScaledMinHash:
         self.H = max_hash_value
         self.scale_factor = scale_factor
         self.raw_elements = set()
-        
+
     def add_value(self, hash_value):
         if hash_value <= self.H * self.scale_factor:
             self.hash_set.add(hash_value)
         self.raw_elements.add(hash_value)
-            
+
     def add_values(self, hash_values):
         for hash_value in hash_values:
             self.add_value(hash_value)
-            
+
     def remove(self, hash_value):
         self.hash_set -= hash_value
-        
+
     def print_hash_set(self):
         print(self.H, self.scale_factor, self.hash_set)
-        
+
     def get_containment(self, smh):
         return 1.0 * len(self.hash_set.intersection(smh.hash_set)) / len(self.hash_set)
-    
+
     def get_scaled_containment(self, smh):
         bf = 1 - (1 - self.scale_factor) ** len(self.raw_elements)
         return 1.0 * len(self.hash_set.intersection(smh.hash_set)) / ( len(self.hash_set) * bf )
@@ -110,30 +111,30 @@ def compare_two_files_to_get_multiple_containments(filename_1, filename_2, k, sc
 
     sketch_sizes = []
     scaled_containments = []
-    for seed in seeds:
+    for seed in tqdm(seeds):
         kmer_hashes_1 = set()
         kmer_hashes_2 = set()
         for kmer in get_kmers_in_file(filename_1, k):
             kmer_hashes_1.add(get_hash_from_kmer(kmer, seed=seed))
         for kmer in get_kmers_in_file(filename_2, k):
             kmer_hashes_2.add(get_hash_from_kmer(kmer, seed=seed))
-            
+
         size_1 = len(kmer_hashes_1)
         size_2 = len(kmer_hashes_2)
         size_union = len( kmer_hashes_1.union( kmer_hashes_2 ) )
-        size_intersection = len( kmer_hashes_1.intersection( kmer_hashes_2 ) )            
-        
+        size_intersection = len( kmer_hashes_1.intersection( kmer_hashes_2 ) )
+
         smh1 = ScaledMinHash(scale_facor, H)
         smh1.add_values(kmer_hashes_1)
         smh2 = ScaledMinHash(scale_facor, H)
         smh2.add_values(kmer_hashes_2)
-        
+
         scaled_containment = smh1.get_containment(smh2)
         sketch_size = smh1.get_sketch_size()
-        
+
         sketch_sizes.append(sketch_size)
         scaled_containments.append(scaled_containment)
-    
+
     true_containment = 1.0*size_intersection/size_1
     return size_1, size_2, size_union, size_intersection, true_containment, scaled_containments, sketch_sizes
 
@@ -154,6 +155,6 @@ if __name__=="__main__":
 	k = args.ksize
 	scale_factor = args.scale_factor
 	seed = args.seed
-	
+
 	values = compare_two_files(filename_1, filename_2, k, scale_factor, seed)
 	print(values)

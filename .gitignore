@@ -1,0 +1,4 @@
+*.fasta
+mash*
+stats
+*.pyc

@@ -34,6 +34,9 @@ class ScaledMinHash:
     def get_containment(self, smh):
         return 1.0 * len(self.hash_set.intersection(smh.hash_set)) / len(self.hash_set)
 
+    def get_jaccard(seld, smh):
+        return 1.0 * len(self.hash_set.intersection(smh.hash_set)) / len(self.hash_set.union(smh.hash_set))
+
     def get_scaled_containment(self, smh):
         bf = 1 - (1 - self.scale_factor) ** len(self.raw_elements)
         return 1.0 * len(self.hash_set.intersection(smh.hash_set)) / ( len(self.hash_set) * bf )
@@ -102,7 +105,7 @@ def compare_two_files(filename_1, filename_2, k, scale_facor, seed):
 
 
 """
-will return: size_1, size_2, size_union, size_intersection, true_containment, list_of_scaled_containments
+will return: size_1, size_2, size_union, size_intersection, true_containment, list_of_scaled_containments, list_of_scaled_jaccards
 the size of the list = num_runs
 """
 def compare_two_files_to_get_multiple_containments(filename_1, filename_2, k, scale_facor, num_runs):
@@ -111,6 +114,7 @@ def compare_two_files_to_get_multiple_containments(filename_1, filename_2, k, sc
 
     sketch_sizes = []
     scaled_containments = []
+    scaled_jaccards = []
     for seed in tqdm(seeds):
         kmer_hashes_1 = set()
         kmer_hashes_2 = set()
@@ -135,8 +139,11 @@ def compare_two_files_to_get_multiple_containments(filename_1, filename_2, k, sc
         sketch_sizes.append(sketch_size)
         scaled_containments.append(scaled_containment)
 
+        scaled_jaccard = smh1.get_jaccard(smh2)
+        scaled_jaccards.append(scaled_jaccard)
+
     true_containment = 1.0*size_intersection/size_1
-    return size_1, size_2, size_union, size_intersection, true_containment, scaled_containments, sketch_sizes
+    return size_1, size_2, size_union, size_intersection, true_containment, scaled_containments, sketch_sizes, scaled_jaccards
 
 def parse_arguments(sys_args):
 	parser = argparse.ArgumentParser()

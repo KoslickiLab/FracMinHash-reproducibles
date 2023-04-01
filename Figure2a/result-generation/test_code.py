@@ -30,7 +30,7 @@ if __name__ == "__main__":
     known_mutation_rate = float(args.mutation_rate)
     fout = args.fout
 
-    size_1, size_2, size_union, size_intersection, true_containment, scaled_containments, sketch_sizes = compare_two_files_to_get_multiple_containments(f1, f2, k, s, num_runs)
+    size_1, size_2, size_union, size_intersection, true_containment, scaled_containments, sketch_sizes, scaled_jaccards = compare_two_files_to_get_multiple_containments(f1, f2, k, s, num_runs)
 
     #print(scaled_containments)
 
@@ -100,8 +100,14 @@ if __name__ == "__main__":
     conf_interval = compute_confidence_interval_one_step([scaled_containment], L, k, confidence, s)[0]
     # get true p from fast ani if == -1
 
+    # get p from scaled jaccard
+    scaled_jaccard = scaled_jaccards[0]
+    j = scaled_jaccard
+    mut_rate_using_jaccard = 1.0 - ( 2*j / (1+j) ) ** (1.0/k)
+
+
     if fout is not None:
         sys.stdout = open(fout, 'a')
-    print(known_mutation_rate, true_containment, mash_c_avg, mash_c_var, scaled_c_avg, scaled_c_var, mash_distance, conf_interval[6], conf_interval[4], conf_interval[5])
+    print(known_mutation_rate, true_containment, mash_c_avg, mash_c_var, scaled_c_avg, scaled_c_var, mash_distance, conf_interval[6], conf_interval[4], conf_interval[5], mut_rate_using_jaccard)
     if fout is not None:
         sys.stdout.close()

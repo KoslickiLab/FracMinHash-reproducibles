@@ -76,5 +76,4 @@ for (filename1, filename2) in pairs:
     args = cmd.split(' ')
     subprocess.call(args)
     f = open(stats_filename, 'a')
-    f.write(filename1 + ' ' + filename2 + '\n')
     f.close()

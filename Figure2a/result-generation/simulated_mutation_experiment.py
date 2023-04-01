@@ -10,7 +10,7 @@ reference_genome = 'staphylococcus.fasta'
 mutated_filename_prefix = 'staphylococcus_mutated_'
 k = 21
 scale_factor = 0.1
-num_runs = 10
+num_runs = 1
 
 for mutation_rate in mut_rates:
     mutate_file(reference_genome, mutated_filename_prefix+str(mutation_rate*100)+'.fasta', mutation_rate, seed)

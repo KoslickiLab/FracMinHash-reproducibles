@@ -59,7 +59,7 @@ def get_true_mut_rate(filename1, filename2):
 seed = 1
 stats_filename = 'results'
 k = 21
-scale_factor = 0.01
+scale_factor = 0.1
 num_runs = 1
 
 f = open(stats_filename, 'w')
@@ -76,4 +76,5 @@ for (filename1, filename2) in pairs:
     args = cmd.split(' ')
     subprocess.call(args)
     f = open(stats_filename, 'a')
+    f.write(filename1 + ' ' + filename2 + '\n')
     f.close()

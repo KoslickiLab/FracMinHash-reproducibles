@@ -54,13 +54,13 @@ def get_true_mut_rate(filename1, filename2):
     true_ani = float(f.readlines()[-1].split('\t')[1])
     f.close()
     return (100.0-true_ani)/100.0
-    
+
 
 seed = 1
 stats_filename = 'results'
 k = 21
 scale_factor = 0.01
-num_runs = 20
+num_runs = 1
 
 f = open(stats_filename, 'w')
 f.close()
@@ -78,5 +78,3 @@ for (filename1, filename2) in pairs:
     f = open(stats_filename, 'a')
     f.write(filename1 + ' ' + filename2 + '\n')
     f.close()
-    
-

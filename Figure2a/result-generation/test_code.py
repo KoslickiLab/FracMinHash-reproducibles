@@ -37,7 +37,7 @@ if __name__ == "__main__":
     f = open("script.sh", 'w')
     for i in range(num_runs):
         seed_for_mash = i + 1
-        command = "mash dist " + f1 + " " + f2 + " -s " +str(sketch_sizes[i])+ " -S " + str(seed_for_mash)
+        command = "mash dist " + f1 + " " + f2 + " -s " +str(sketch_sizes[i])+ " -s " + str(seed_for_mash)
         f.write(command)
         f.write("\n")
     f.close()

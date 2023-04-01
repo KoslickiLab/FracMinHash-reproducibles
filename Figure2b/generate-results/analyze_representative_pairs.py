@@ -59,7 +59,7 @@ def get_true_mut_rate(filename1, filename2):
 seed = 1
 stats_filename = 'results'
 k = 21
-scale_factor = 0.1
+scale_factor = 0.01
 num_runs = 1
 
 f = open(stats_filename, 'w')

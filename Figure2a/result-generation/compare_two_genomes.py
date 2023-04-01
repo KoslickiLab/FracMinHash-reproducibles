@@ -34,7 +34,7 @@ class ScaledMinHash:
     def get_containment(self, smh):
         return 1.0 * len(self.hash_set.intersection(smh.hash_set)) / len(self.hash_set)
 
-    def get_jaccard(seld, smh):
+    def get_jaccard(self, smh):
         return 1.0 * len(self.hash_set.intersection(smh.hash_set)) / len(self.hash_set.union(smh.hash_set))
 
     def get_scaled_containment(self, smh):

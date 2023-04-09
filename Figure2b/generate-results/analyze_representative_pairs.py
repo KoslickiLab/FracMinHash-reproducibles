@@ -60,7 +60,7 @@ seed = 1
 stats_filename = 'results'
 k = 21
 scale_factor = 0.01
-num_runs = 1
+num_runs = 20
 
 f = open(stats_filename, 'w')
 f.close()

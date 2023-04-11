@@ -5,7 +5,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import figure
 
-figure(figsize=(5, 5), dpi=80)
+figure(figsize=(5, 4), dpi=80)
 plt.style.use('seaborn-bright')
 
 df = pd.read_csv('containment-results.txt', delimiter=',', header=None)

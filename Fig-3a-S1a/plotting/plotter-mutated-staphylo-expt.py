@@ -13,13 +13,13 @@ df.columns=['mut_rate', 'true_c', 'mash_c', 'mash_c_var', 'scaled_c', 'scaled_c_
 n = len(df['true_c'].tolist())
 s = [20 for i in range(n)]
 
-figure(figsize=(5,5), dpi=80)
+figure(figsize=(5,4), dpi=80)
 plt.style.use('seaborn-bright')
 
 plt.plot( [ 1.0*i/20 for i in range(11) ], [ 1.0*i/20 for i in range(11) ], alpha=0.8, linestyle='--', linewidth=1, color='grey' )
 plt.scatter( df['mut_rate'].tolist(), df['mash_dist'].tolist(), marker='.', s=s, alpha=0.6, label="Mash Distance", color='red')
-plt.scatter( df['mut_rate'].tolist(), df['p_est'].tolist(), marker='.', s=s, alpha=0.6, label="FracMinHash Distance (Containment)", color='blue')
-plt.scatter( df['mut_rate'].tolist(), df['p_est_j'].tolist(), marker='v', s=s, alpha=0.6, label="FracMinHash Distance (Jaccard)", color='purple')
+plt.scatter( df['mut_rate'].tolist(), df['p_est'].tolist(), marker='.', s=s, alpha=0.6, label="FracMinHash Distance", color='blue')
+#plt.scatter( df['mut_rate'].tolist(), df['p_est_j'].tolist(), marker='v', s=s, alpha=0.6, label="FracMinHash Distance (Jaccard)", color='purple')
 
 delta_x = 0.01
 linewidth = 0.7

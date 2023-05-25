@@ -1,0 +1,13 @@
+name: pyani3
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8
+  - pyani=0.2.11
+  - jinja2
+  - openpyxl
+  - pip
+  - pip:
+    - git+https://github.com/widdowquinn/pyani@master

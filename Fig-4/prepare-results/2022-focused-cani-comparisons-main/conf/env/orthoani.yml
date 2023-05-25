@@ -1,0 +1,7 @@
+name: orthoani-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - java-jdk >=8,<9

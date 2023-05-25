@@ -1,0 +1,7 @@
+name: pyani
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - pyani=0.2.11

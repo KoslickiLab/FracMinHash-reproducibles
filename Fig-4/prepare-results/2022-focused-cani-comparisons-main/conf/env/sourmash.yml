@@ -1,0 +1,12 @@
+name: sourmash
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - pandas>=1.5,<2
+  - tqdm
+  - pip
+  - pip:
+    - git+https://github.com/sourmash-bio/sourmash@latest
